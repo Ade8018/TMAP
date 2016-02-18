@@ -18,10 +18,17 @@ public class ApkUtil {
 		lis.onResult(file, OnApkProcessListener.TYPE_START, true, apk.getError());
 		boolean result = apk.unpack();
 		lis.onResult(file, OnApkProcessListener.TYPE_UNPACK, result, apk.getError());
-		if (result) {
-			lis.onResult(file, OnApkProcessListener.TYPE_INSERT, apk.insertCode(), apk.getError());
-			lis.onResult(file, OnApkProcessListener.TYPE_PACK, apk.pack(), apk.getError());
-			lis.onResult(file, OnApkProcessListener.TYPE_SIGN, apk.sign(), apk.getError());
-		}
+		if (!result)
+			return;
+		result = apk.insertCode();
+		lis.onResult(file, OnApkProcessListener.TYPE_INSERT, result, apk.getError());
+		if (!result)
+			return;
+		result = apk.pack();
+		lis.onResult(file, OnApkProcessListener.TYPE_PACK, result, apk.getError());
+		if (!result)
+			return;
+		result = apk.sign();
+		lis.onResult(file, OnApkProcessListener.TYPE_SIGN, result, apk.getError());
 	}
 }

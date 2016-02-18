@@ -129,7 +129,11 @@ public class PackDlg extends JDialog {
 								}
 								break;
 							case OnApkProcessListener.TYPE_INSERT:
-								sb.append("植入sdk成功。").append("\n");
+								if (result) {
+									sb.append("植入sdk成功。").append("\n");
+								} else {
+									sb.append("植入sdk失败。").append("\n");
+								}
 								break;
 							case OnApkProcessListener.TYPE_PACK:
 								sb.append("打包成功。").append("\n");

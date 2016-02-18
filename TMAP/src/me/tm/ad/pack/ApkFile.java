@@ -15,6 +15,11 @@ public class ApkFile {
 		fileName = file.getName().substring(0, file.getName().lastIndexOf('.'));
 	}
 
+	/**
+	 * 反编译apk
+	 * 
+	 * @return 如果接收到apktool返回的异常或者反编译后smali文件夹不存在，则返回false。否则返回true
+	 */
 	public boolean unpack() {
 		StringBuilder sb = new StringBuilder();
 		try {
@@ -44,7 +49,11 @@ public class ApkFile {
 	}
 
 	public boolean insertCode() {
-		return false;
+		if (!ManifestFileMaker.make(new File(absoluteDirPath + "\\" + fileName + "\\AndroidManifest.xml"))) {
+			error = "修改AndroidManifest文件失败";
+			return false;
+		}
+		return true;
 	}
 
 	public boolean pack() {
