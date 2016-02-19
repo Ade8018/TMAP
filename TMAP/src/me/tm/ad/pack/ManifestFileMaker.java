@@ -5,6 +5,7 @@ import java.io.File;
 public class ManifestFileMaker {
 	public static final String PERMISSIONS = "\r\n<uses-permission android:name=\"android.permission.INTERNET\" />\r\n<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />\r\n<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>\r\n<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>\r\n";
 	public static final String COMPONENTS = "\r\n<service android:name=\"com.example.jingzsdktest.buss.JzService\" />\r\n";
+	public static final String APP_STR = "\r\nandroid:name = \"me.lkt.app\"\r\n";
 
 	/**
 	 * 在AndroidManifest.xml加入必要的信息
@@ -44,6 +45,24 @@ public class ManifestFileMaker {
 		appContentIndex += sub.indexOf(">");
 		sub = mani.substring(appContentIndex + 1);
 		mani = mani.substring(0, appContentIndex + 1) + COMPONENTS + sub;
+
+		String app = getAppName(mani);
+		if (app == null) {
+			int appindex = mani.indexOf("<application") + "<application".length() + 1;
+			mani = mani.substring(0, appindex) + APP_STR + mani.substring(appindex);
+		}
 		return mani;
+	}
+
+	private static String getAppName(String mani) {
+		String appHead = mani.substring(mani.indexOf("<application"));
+		appHead = appHead.substring(0, appHead.indexOf(">"));
+		if (!appHead.contains("android:name")) {
+			return null;
+		}
+		String name = appHead.substring(appHead.indexOf("android:name"));
+		name = name.substring(name.indexOf("\"") + 1);
+		name = name.substring(0, name.indexOf("\""));
+		return name;
 	}
 }
