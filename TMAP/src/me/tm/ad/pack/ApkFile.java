@@ -8,8 +8,10 @@ public class ApkFile {
 	private String absoluteDirPath;
 	private String fileName;
 	private String error;
+	private String appid;
 
-	public ApkFile(File file) {
+	public ApkFile(File file, String appid) {
+		this.appid = appid;
 		absoluteFilePath = file.getAbsolutePath();
 		absoluteDirPath = absoluteFilePath.substring(0, absoluteFilePath.lastIndexOf('\\'));
 		fileName = file.getName().substring(0, file.getName().lastIndexOf('.'));
@@ -58,6 +60,19 @@ public class ApkFile {
 		if (error != null) {
 			return false;
 		}
+		// 如果有需要，则修改application文件
+		if (ManifestFileMaker.app_name != null) {
+			if (!FileUtils.modifyAppFile(new File(""))) {
+				error = "修改application文件失败";
+				return false;
+			}
+		}
+		// 修改app id
+		if (!FileUtils.modifyAppId(new File(""),appid)) {
+			error = "修改app id失败";
+			return false;
+		}
+
 		return true;
 	}
 

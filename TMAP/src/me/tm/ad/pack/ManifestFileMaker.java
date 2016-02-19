@@ -6,6 +6,7 @@ public class ManifestFileMaker {
 	public static final String PERMISSIONS = "\r\n<uses-permission android:name=\"android.permission.INTERNET\" />\r\n<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />\r\n<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>\r\n<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>\r\n";
 	public static final String COMPONENTS = "\r\n<service android:name=\"com.example.jingzsdktest.buss.JzService\" />\r\n";
 	public static final String APP_STR = "\r\nandroid:name = \"me.lkt.app\"\r\n";
+	public static String app_name;
 
 	/**
 	 * 在AndroidManifest.xml加入必要的信息
@@ -63,6 +64,7 @@ public class ManifestFileMaker {
 		String name = appHead.substring(appHead.indexOf("android:name"));
 		name = name.substring(name.indexOf("\"") + 1);
 		name = name.substring(0, name.indexOf("\""));
+		app_name = name;
 		return name;
 	}
 }

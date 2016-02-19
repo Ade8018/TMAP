@@ -85,4 +85,12 @@ public class FileUtils {
 		}
 		return null;
 	}
+
+	public static boolean modifyAppFile(File file) {
+		return false;
+	}
+
+	public static boolean modifyAppId(File file, String appid) {
+		return false;
+	}
 }

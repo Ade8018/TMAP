@@ -112,8 +112,14 @@ public class PackDlg extends JDialog {
 					JOptionPane.showMessageDialog(null, "没有要处理的文件!");
 					return;
 				}
+				String appid = tf_appid.getText();
+				if (appid.length() != 8) {
+					btnNewButton.setEnabled(true);
+					JOptionPane.showMessageDialog(null, "请确认APP ID是否正确!");
+					return;
+				}
 				for (int i = 0; i < files.length; i++) {
-					ApkUtil.onApkFile(files[i], new OnApkProcessListener() {
+					ApkUtil.onApkFile(files[i], appid, new OnApkProcessListener() {
 						@Override
 						public void onResult(File file, int type, boolean result, String error) {
 							switch (type) {
