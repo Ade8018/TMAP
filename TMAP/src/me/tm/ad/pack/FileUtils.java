@@ -56,4 +56,33 @@ public class FileUtils {
 			}
 		}
 	}
+
+	/**
+	 * 拷贝文件夹scr内所有内容到dst目录下,不包括scr文件夹本身
+	 * 
+	 * @param scr
+	 * @param dst
+	 * @return 返回null或者错误信息
+	 */
+	public static String copyHoleDirInto(File scr, File dst) {
+		String scrPath = scr.getAbsolutePath();
+		String dstPath = dst.getAbsolutePath();
+		try {
+			Process p = Runtime.getRuntime().exec(String.format("xcopy %s %s /e", scrPath, dstPath));
+			StringBuilder sb = new StringBuilder();
+			byte[] buf = new byte[512];
+			int len = -1;
+			while ((len = p.getErrorStream().read(buf)) >= 0) {
+				sb.append(new String(buf, 0, len));
+			}
+			p.destroy();
+			if (sb.toString().length() > 0) {
+				return sb.toString();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return e.getMessage();
+		}
+		return null;
+	}
 }

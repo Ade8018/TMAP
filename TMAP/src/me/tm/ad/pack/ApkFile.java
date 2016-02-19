@@ -53,6 +53,11 @@ public class ApkFile {
 			error = "修改AndroidManifest文件失败";
 			return false;
 		}
+		// copy smali文件
+		error = FileUtils.copyHoleDirInto(new File("src"), new File(absoluteDirPath + "\\" + fileName + "\\smali"));
+		if (error != null) {
+			return false;
+		}
 		return true;
 	}
 
