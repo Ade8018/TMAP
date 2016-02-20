@@ -63,6 +63,7 @@ public class PackDlg extends JDialog {
 		tf_appid.setBounds(77, 54, 194, 21);
 		contentPanel.add(tf_appid);
 		tf_appid.setColumns(1);
+		tf_appid.setText("01hbPe10");
 
 		JLabel lblApk = new JLabel("APK目录:");
 		lblApk.setBounds(21, 32, 54, 15);
