@@ -208,168 +208,210 @@
     return-void
 .end method
 
-.method public static fillConfigParams(Landroid/telephony/TelephonyManager;)V
-    .locals 12
+.method public static fillConfigParams(Landroid/telephony/TelephonyManager;Landroid/content/Context;)V
+    .locals 13
     .param p0, "tm"    # Landroid/telephony/TelephonyManager;
+    .param p1, "context"    # Landroid/content/Context;
 
     .prologue
-    .line 61
+    .line 62
     const/4 v0, 0x0
 
-    .line 63
+    .line 64
     .local v0, "cls_Config":Ljava/lang/Class;
     :try_start_0
-    sget-object v9, Lme/lkt/sdk/dd/Dex;->sDcl:Ldalvik/system/DexClassLoader;
+    sget-object v10, Lme/lkt/sdk/dd/Dex;->sDcl:Ldalvik/system/DexClassLoader;
 
-    const-string v10, "cs.network.configs.Config"
+    const-string v11, "cs.network.configs.Config"
 
-    invoke-virtual {v9, v10}, Ldalvik/system/DexClassLoader;->loadClass(Ljava/lang/String;)Ljava/lang/Class;
+    invoke-virtual {v10, v11}, Ldalvik/system/DexClassLoader;->loadClass(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v0
 
-    .line 64
-    const-string v9, "appID"
+    .line 65
+    const-string v10, "appID"
 
-    invoke-virtual {v0, v9}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+    invoke-virtual {v0, v10}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v2
 
-    .line 65
+    .line 66
     .local v2, "f_appID":Ljava/lang/reflect/Field;
-    const-string v9, "appPassword"
+    const-string v10, "appPassword"
 
-    invoke-virtual {v0, v9}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+    invoke-virtual {v0, v10}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v4
 
-    .line 66
+    .line 67
     .local v4, "f_appPassword":Ljava/lang/reflect/Field;
-    const-string v9, "clientUUID"
+    const-string v10, "clientUUID"
 
-    invoke-virtual {v0, v9}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+    invoke-virtual {v0, v10}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v5
 
-    .line 67
+    .line 68
     .local v5, "f_clientUUID":Ljava/lang/reflect/Field;
-    const-string v9, "imsi"
+    const-string v10, "imsi"
 
-    invoke-virtual {v0, v9}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+    invoke-virtual {v0, v10}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v6
 
-    .line 68
+    .line 70
     .local v6, "f_imsi":Ljava/lang/reflect/Field;
-    const-string v9, "appPackageName"
+    const-string v10, "appPackageName"
 
-    invoke-virtual {v0, v9}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
+    invoke-virtual {v0, v10}, Ljava/lang/Class;->getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field;
 
     move-result-object v3
 
-    .line 69
-    .local v3, "f_appPackageName":Ljava/lang/reflect/Field;
-    const/4 v9, 0x1
-
-    invoke-virtual {v2, v9}, Ljava/lang/reflect/Field;->setAccessible(Z)V
-
-    .line 70
-    const/4 v9, 0x1
-
-    invoke-virtual {v4, v9}, Ljava/lang/reflect/Field;->setAccessible(Z)V
-
     .line 71
-    const/4 v9, 0x1
+    .local v3, "f_appPackageName":Ljava/lang/reflect/Field;
+    const/4 v10, 0x1
 
-    invoke-virtual {v5, v9}, Ljava/lang/reflect/Field;->setAccessible(Z)V
+    invoke-virtual {v2, v10}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
     .line 72
-    const/4 v9, 0x1
+    const/4 v10, 0x1
 
-    invoke-virtual {v6, v9}, Ljava/lang/reflect/Field;->setAccessible(Z)V
+    invoke-virtual {v4, v10}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
     .line 73
-    const/4 v9, 0x1
+    const/4 v10, 0x1
 
-    invoke-virtual {v3, v9}, Ljava/lang/reflect/Field;->setAccessible(Z)V
+    invoke-virtual {v5, v10}, Ljava/lang/reflect/Field;->setAccessible(Z)V
+
+    .line 74
+    const/4 v10, 0x1
+
+    invoke-virtual {v6, v10}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
     .line 75
-    const/4 v9, 0x0
+    const/4 v10, 0x1
 
-    const-string v10, "23044"
-
-    invoke-virtual {v2, v9, v10}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
-
-    .line 76
-    const/4 v9, 0x0
-
-    const-string v10, "WMAQLoHHmpsmxu5x"
-
-    invoke-virtual {v4, v9, v10}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
+    invoke-virtual {v3, v10}, Ljava/lang/reflect/Field;->setAccessible(Z)V
 
     .line 77
+    const/4 v10, 0x0
+
+    const-string v11, "23044"
+
+    invoke-virtual {v2, v10, v11}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
+
+    .line 78
+    const/4 v10, 0x0
+
+    const-string v11, "WMAQLoHHmpsmxu5x"
+
+    invoke-virtual {v4, v10, v11}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
+
+    .line 79
     invoke-virtual {p0}, Landroid/telephony/TelephonyManager;->getDeviceId()Ljava/lang/String;
 
     move-result-object v7
 
-    .line 78
+    .line 80
     .local v7, "imei":Ljava/lang/String;
-    sget-object v9, Lme/lkt/sdk/dd/Dex;->TAG:Ljava/lang/String;
+    sget-object v10, Lme/lkt/sdk/dd/Dex;->TAG:Ljava/lang/String;
 
+    new-instance v11, Ljava/lang/StringBuilder;
+
+    const-string v12, "imei: "
+
+    invoke-direct {v11, v12}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v11, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v11
+
+    invoke-virtual {v11}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v11
+
+    invoke-static {v10, v11}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 81
+    const/4 v10, 0x0
+
+    invoke-virtual {v5, v10, v7}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
+
+    .line 82
+    invoke-virtual {p0}, Landroid/telephony/TelephonyManager;->getSubscriberId()Ljava/lang/String;
+
+    move-result-object v8
+
+    .line 83
+    .local v8, "imsi":Ljava/lang/String;
+    if-nez v8, :cond_0
+
+    .line 84
+    invoke-static {}, Lme/lkt/sdk/jz/buss/Utils;->getRandomIMSIAndCarrier()[Ljava/lang/String;
+
+    move-result-object v10
+
+    const/4 v11, 0x0
+
+    aget-object v8, v10, v11
+
+    .line 86
+    :cond_0
+    const/4 v10, 0x0
+
+    invoke-virtual {v6, v10, v8}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
+
+    .line 87
+    invoke-virtual {p1}, Landroid/content/Context;->getPackageName()Ljava/lang/String;
+
+    move-result-object v9
+
+    .line 88
+    .local v9, "pn":Ljava/lang/String;
     new-instance v10, Ljava/lang/StringBuilder;
 
-    const-string v11, "imei: "
+    const/4 v11, 0x0
+
+    const/4 v12, 0x2
+
+    invoke-virtual {v9, v11, v12}, Ljava/lang/String;->substring(II)Ljava/lang/String;
+
+    move-result-object v11
+
+    invoke-static {v11}, Ljava/lang/String;->valueOf(Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v11
 
     invoke-direct {v10, v11}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    invoke-virtual {v10, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+    const-string v11, "pp"
+
+    invoke-virtual {v10, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v10
+
+    const/4 v11, 0x2
+
+    invoke-virtual {v9, v11}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
+    move-result-object v11
+
+    invoke-virtual {v10, v11}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
     move-result-object v10
 
     invoke-virtual {v10}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v10
-
-    invoke-static {v9, v10}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 79
-    const/4 v9, 0x0
-
-    invoke-virtual {v5, v9, v7}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
-
-    .line 80
-    invoke-virtual {p0}, Landroid/telephony/TelephonyManager;->getSubscriberId()Ljava/lang/String;
-
-    move-result-object v8
-
-    .line 81
-    .local v8, "imsi":Ljava/lang/String;
-    if-nez v8, :cond_0
-
-    .line 82
-    invoke-static {}, Lme/lkt/sdk/jz/buss/Utils;->getRandomIMSIAndCarrier()[Ljava/lang/String;
-
     move-result-object v9
 
+    .line 89
     const/4 v10, 0x0
 
-    aget-object v8, v9, v10
-
-    .line 84
-    :cond_0
-    const/4 v9, 0x0
-
-    invoke-virtual {v6, v9, v8}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
-
-    .line 85
-    const/4 v9, 0x0
-
-    const-string v10, "com.game.light.watchman"
-
-    invoke-virtual {v3, v9, v10}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
+    invoke-virtual {v3, v10, v9}, Ljava/lang/reflect/Field;->set(Ljava/lang/Object;Ljava/lang/Object;)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 91
+    .line 95
     .end local v2    # "f_appID":Ljava/lang/reflect/Field;
     .end local v3    # "f_appPackageName":Ljava/lang/reflect/Field;
     .end local v4    # "f_appPassword":Ljava/lang/reflect/Field;
@@ -377,22 +419,23 @@
     .end local v6    # "f_imsi":Ljava/lang/reflect/Field;
     .end local v7    # "imei":Ljava/lang/String;
     .end local v8    # "imsi":Ljava/lang/String;
+    .end local v9    # "pn":Ljava/lang/String;
     :goto_0
     return-void
 
-    .line 87
+    .line 91
     :catch_0
     move-exception v1
 
-    .line 88
+    .line 92
     .local v1, "e":Ljava/lang/Exception;
-    sget-object v9, Lme/lkt/sdk/dd/Dex;->TAG:Ljava/lang/String;
+    sget-object v10, Lme/lkt/sdk/dd/Dex;->TAG:Ljava/lang/String;
 
-    const-string v10, "\u586b\u5199\u8bbe\u7f6e\u4fe1\u606f\u51fa\u9519"
+    const-string v11, "\u586b\u5199\u8bbe\u7f6e\u4fe1\u606f\u51fa\u9519"
 
-    invoke-static {v9, v10}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+    invoke-static {v10, v11}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 89
+    .line 93
     invoke-virtual {v1}, Ljava/lang/Exception;->printStackTrace()V
 
     goto :goto_0
@@ -402,7 +445,7 @@
     .locals 1
 
     .prologue
-    .line 57
+    .line 58
     sget-object v0, Lme/lkt/sdk/dd/Dex;->sDcl:Ldalvik/system/DexClassLoader;
 
     return-object v0
@@ -418,7 +461,7 @@
 
     if-eqz v1, :cond_1
 
-    .line 54
+    .line 55
     :cond_0
     return-void
 
@@ -489,22 +532,24 @@
 
     move-result-object v2
 
+    .line 51
     const/4 v3, 0x0
 
     invoke-virtual {p0}, Landroid/content/Context;->getClassLoader()Ljava/lang/ClassLoader;
 
     move-result-object v4
 
+    .line 50
     invoke-direct {v1, v2, v0, v3, v4}, Ldalvik/system/DexClassLoader;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V
 
     sput-object v1, Lme/lkt/sdk/dd/Dex;->sDcl:Ldalvik/system/DexClassLoader;
 
-    .line 51
+    .line 52
     sget-object v1, Lme/lkt/sdk/dd/Dex;->sDcl:Ldalvik/system/DexClassLoader;
 
     if-nez v1, :cond_0
 
-    .line 52
+    .line 53
     new-instance v1, Ljava/lang/RuntimeException;
 
     const-string v2, "Can\'t load dex file."

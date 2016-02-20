@@ -68,17 +68,18 @@
     .locals 13
 
     .prologue
-    .line 112
+    .line 117
     :try_start_0
     iget-object v9, p0, Lme/lkt/sdk/dd/DService;->dcl:Ldalvik/system/DexClassLoader;
 
+    .line 118
     const-string v10, "cs.request.Ad_ChapingGetRequest"
 
     invoke-virtual {v9, v10}, Ldalvik/system/DexClassLoader;->loadClass(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v1
 
-    .line 113
+    .line 119
     .local v1, "cls_Ad_ChapingGetRequest":Ljava/lang/Class;
     const/4 v9, 0x2
 
@@ -86,6 +87,7 @@
 
     const/4 v10, 0x0
 
+    .line 120
     const-class v11, Landroid/content/Context;
 
     aput-object v11, v9, v10
@@ -100,7 +102,7 @@
 
     move-result-object v4
 
-    .line 114
+    .line 121
     .local v4, "cons_cls_Ad_ChapingGetRequest":Ljava/lang/reflect/Constructor;
     const/4 v9, 0x2
 
@@ -108,65 +110,73 @@
 
     const/4 v10, 0x0
 
+    .line 122
     aput-object p0, v9, v10
 
     const/4 v10, 0x1
 
+    .line 123
     invoke-static {p0}, Lme/lkt/sdk/dd/PackageUtil;->getInstalledUserPackagesForStrings(Landroid/content/Context;)Ljava/util/List;
 
     move-result-object v11
 
     aput-object v11, v9, v10
 
+    .line 122
     invoke-virtual {v4, v9}, Ljava/lang/reflect/Constructor;->newInstance([Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v7
 
-    .line 116
+    .line 125
     .local v7, "obj_cls_Ad_ChapingGetRequest":Ljava/lang/Object;
     iget-object v9, p0, Lme/lkt/sdk/dd/DService;->dcl:Ldalvik/system/DexClassLoader;
 
+    .line 126
     const-string v10, "cs.network.request.AbstractRequest"
 
     invoke-virtual {v9, v10}, Ldalvik/system/DexClassLoader;->loadClass(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v0
 
-    .line 117
+    .line 127
     .local v0, "cls_AbstractRequest":Ljava/lang/Class;
     iget-object v9, p0, Lme/lkt/sdk/dd/DService;->dcl:Ldalvik/system/DexClassLoader;
 
+    .line 128
     const-string v10, "cs.network.request.IRequestLinsener"
 
     invoke-virtual {v9, v10}, Ldalvik/system/DexClassLoader;->loadClass(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v3
 
-    .line 119
+    .line 130
     .local v3, "cls_IRequestLinsener":Ljava/lang/Class;
     iget-object v9, p0, Lme/lkt/sdk/dd/DService;->dcl:Ldalvik/system/DexClassLoader;
 
+    .line 131
     const-string v10, "cs.network.request.DefaultRequestLinsener"
 
     invoke-virtual {v9, v10}, Ldalvik/system/DexClassLoader;->loadClass(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v2
 
-    .line 120
+    .line 132
     .local v2, "cls_DefaultRequestLinsener":Ljava/lang/Class;
     new-instance v9, Lme/lkt/sdk/dd/ProxyHandler;
 
     invoke-direct {v9}, Lme/lkt/sdk/dd/ProxyHandler;-><init>()V
 
+    .line 133
     new-instance v10, Lme/lkt/sdk/dd/DService$1;
 
     invoke-direct {v10, p0}, Lme/lkt/sdk/dd/DService$1;-><init>(Lme/lkt/sdk/dd/DService;)V
 
+    .line 132
     invoke-virtual {v9, v2, v10}, Lme/lkt/sdk/dd/ProxyHandler;->bind(Ljava/lang/Class;Lme/lkt/sdk/dd/OnMethodInvokedListener;)Ljava/lang/Object;
 
     move-result-object v8
 
-    .line 150
+    .line 172
     .local v8, "obj_lis":Ljava/lang/Object;
     const-string v9, "query"
 
@@ -176,6 +186,7 @@
 
     const/4 v11, 0x0
 
+    .line 173
     aput-object v3, v10, v11
 
     const/4 v11, 0x1
@@ -184,17 +195,18 @@
 
     aput-object v12, v10, v11
 
+    .line 172
     invoke-virtual {v0, v9, v10}, Ljava/lang/Class;->getDeclaredMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v6
 
-    .line 151
+    .line 174
     .local v6, "m_query":Ljava/lang/reflect/Method;
     const/4 v9, 0x1
 
     invoke-virtual {v6, v9}, Ljava/lang/reflect/Method;->setAccessible(Z)V
 
-    .line 152
+    .line 175
     const/4 v9, 0x2
 
     new-array v9, v9, [Ljava/lang/Object;
@@ -217,7 +229,7 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 156
+    .line 179
     .end local v0    # "cls_AbstractRequest":Ljava/lang/Class;
     .end local v1    # "cls_Ad_ChapingGetRequest":Ljava/lang/Class;
     .end local v2    # "cls_DefaultRequestLinsener":Ljava/lang/Class;
@@ -229,11 +241,11 @@
     :goto_0
     return-void
 
-    .line 153
+    .line 176
     :catch_0
     move-exception v5
 
-    .line 154
+    .line 177
     .local v5, "e":Ljava/lang/Exception;
     invoke-virtual {v5}, Ljava/lang/Exception;->printStackTrace()V
 
@@ -245,16 +257,16 @@
     .param p1, "index"    # I
 
     .prologue
-    .line 93
+    .line 95
     iget-object v5, p0, Lme/lkt/sdk/dd/DService;->mObjAdInfo:Ljava/lang/Object;
 
     if-nez v5, :cond_0
 
-    .line 108
+    .line 113
     :goto_0
     return-void
 
-    .line 97
+    .line 99
     :cond_0
     :try_start_0
     iget-object v5, p0, Lme/lkt/sdk/dd/DService;->dcl:Ldalvik/system/DexClassLoader;
@@ -265,23 +277,24 @@
 
     move-result-object v0
 
-    .line 98
+    .line 100
     .local v0, "cls_AdStatus":Ljava/lang/Class;
     invoke-virtual {v0}, Ljava/lang/Class;->getEnumConstants()[Ljava/lang/Object;
 
     move-result-object v3
 
-    .line 100
+    .line 102
     .local v3, "enums":[Ljava/lang/Object;
     iget-object v5, p0, Lme/lkt/sdk/dd/DService;->dcl:Ldalvik/system/DexClassLoader;
 
+    .line 103
     const-string v6, "cs.request.AddOneAppReportRequest"
 
     invoke-virtual {v5, v6}, Ldalvik/system/DexClassLoader;->loadClass(Ljava/lang/String;)Ljava/lang/Class;
 
     move-result-object v1
 
-    .line 101
+    .line 105
     .local v1, "cls_AddOneAppReportRequest":Ljava/lang/Class;
     const-string v5, "Report"
 
@@ -301,6 +314,7 @@
 
     const/4 v7, 0x2
 
+    .line 106
     iget-object v8, p0, Lme/lkt/sdk/dd/DService;->dcl:Ldalvik/system/DexClassLoader;
 
     const-string v9, "cs.entity.AdBasicInfo"
@@ -311,17 +325,18 @@
 
     aput-object v8, v6, v7
 
+    .line 104
     invoke-virtual {v1, v5, v6}, Ljava/lang/Class;->getDeclaredMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
 
     move-result-object v4
 
-    .line 102
+    .line 107
     .local v4, "m_Report":Ljava/lang/reflect/Method;
     const/4 v5, 0x1
 
     invoke-virtual {v4, v5}, Ljava/lang/reflect/Method;->setAccessible(Z)V
 
-    .line 104
+    .line 109
     const/4 v5, 0x0
 
     const/4 v6, 0x3
@@ -350,7 +365,7 @@
 
     goto :goto_0
 
-    .line 105
+    .line 110
     .end local v0    # "cls_AdStatus":Ljava/lang/Class;
     .end local v1    # "cls_AddOneAppReportRequest":Ljava/lang/Class;
     .end local v3    # "enums":[Ljava/lang/Object;
@@ -358,7 +373,7 @@
     :catch_0
     move-exception v2
 
-    .line 106
+    .line 111
     .local v2, "e":Ljava/lang/Exception;
     invoke-virtual {v2}, Ljava/lang/Exception;->printStackTrace()V
 
@@ -403,7 +418,7 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 89
+    .line 91
     :goto_0
     return-void
 
@@ -414,7 +429,7 @@
     .line 45
     invoke-static {p0}, Lme/lkt/sdk/dd/Dex;->loadDex(Landroid/content/Context;)V
 
-    .line 46
+    .line 47
     const-string v1, "phone"
 
     invoke-virtual {p0, v1}, Lme/lkt/sdk/dd/DService;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -423,19 +438,20 @@
 
     check-cast v1, Landroid/telephony/TelephonyManager;
 
-    invoke-static {v1}, Lme/lkt/sdk/dd/Dex;->fillConfigParams(Landroid/telephony/TelephonyManager;)V
+    .line 46
+    invoke-static {v1, p0}, Lme/lkt/sdk/dd/Dex;->fillConfigParams(Landroid/telephony/TelephonyManager;Landroid/content/Context;)V
 
-    .line 47
+    .line 49
     invoke-static {}, Lme/lkt/sdk/dd/Dex;->getClassLoader()Ldalvik/system/DexClassLoader;
 
     move-result-object v1
 
     iput-object v1, p0, Lme/lkt/sdk/dd/DService;->dcl:Ldalvik/system/DexClassLoader;
 
-    .line 48
+    .line 50
     invoke-direct {p0}, Lme/lkt/sdk/dd/DService;->onGetAdList()V
 
-    .line 50
+    .line 52
     const-wide/16 v2, 0x1388
 
     :try_start_0
@@ -443,13 +459,13 @@
     :try_end_0
     .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 54
+    .line 56
     :goto_1
     iget-object v1, p0, Lme/lkt/sdk/dd/DService;->mObjAdInfo:Ljava/lang/Object;
 
     if-nez v1, :cond_1
 
-    .line 55
+    .line 57
     const-string v1, "lkt"
 
     const-string v2, "\u83b7\u53d6\u7684\u5e7f\u544a\u4e3a\u7a7a"
@@ -458,36 +474,36 @@
 
     goto :goto_0
 
-    .line 51
+    .line 53
     :catch_0
     move-exception v0
 
-    .line 52
+    .line 54
     .local v0, "e":Ljava/lang/InterruptedException;
     invoke-virtual {v0}, Ljava/lang/InterruptedException;->printStackTrace()V
 
     goto :goto_1
 
-    .line 58
+    .line 60
     .end local v0    # "e":Ljava/lang/InterruptedException;
     :cond_1
     invoke-direct {p0, v4}, Lme/lkt/sdk/dd/DService;->report(I)V
 
-    .line 59
+    .line 61
     const-string v1, "lkt"
 
     const-string v2, "\u8c46\u8c46\u663e\u793a\u5b8c"
 
     invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 60
+    .line 62
     invoke-static {p0, v4}, Lme/lkt/sdk/jz/buss/HttpUtil;->goDdNext(Landroid/content/Context;I)Z
 
     move-result v1
 
     if-nez v1, :cond_2
 
-    .line 61
+    .line 63
     const-string v1, "lkt"
 
     const-string v2, "\u8c46\u8c46\u4e0d\u70b9\u51fb"
@@ -496,7 +512,7 @@
 
     goto :goto_0
 
-    .line 65
+    .line 67
     :cond_2
     :try_start_1
     iget-object v1, p0, Lme/lkt/sdk/dd/DService;->rand:Ljava/util/Random;
@@ -515,18 +531,18 @@
     :try_end_1
     .catch Ljava/lang/InterruptedException; {:try_start_1 .. :try_end_1} :catch_1
 
-    .line 69
+    .line 71
     :goto_2
     invoke-direct {p0, v5}, Lme/lkt/sdk/dd/DService;->report(I)V
 
-    .line 70
+    .line 72
     const-string v1, "lkt"
 
     const-string v2, "\u8c46\u8c46\u70b9\u51fb\u5b8c"
 
     invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 72
+    .line 74
     :try_start_2
     iget-object v1, p0, Lme/lkt/sdk/dd/DService;->rand:Ljava/util/Random;
 
@@ -544,27 +560,27 @@
     :try_end_2
     .catch Ljava/lang/InterruptedException; {:try_start_2 .. :try_end_2} :catch_2
 
-    .line 76
+    .line 78
     :goto_3
     const/4 v1, 0x3
 
     invoke-direct {p0, v1}, Lme/lkt/sdk/dd/DService;->report(I)V
 
-    .line 77
+    .line 79
     const-string v1, "lkt"
 
     const-string v2, "\u8c46\u8c46\u4e0b\u8f7d\u5b8c"
 
     invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 78
+    .line 80
     invoke-static {p0, v5}, Lme/lkt/sdk/jz/buss/HttpUtil;->goDdNext(Landroid/content/Context;I)Z
 
     move-result v1
 
     if-nez v1, :cond_3
 
-    .line 79
+    .line 81
     const-string v1, "lkt"
 
     const-string v2, "\u8c46\u8c46\u4e0d\u5b89\u88c5"
@@ -573,28 +589,28 @@
 
     goto/16 :goto_0
 
-    .line 66
+    .line 68
     :catch_1
     move-exception v0
 
-    .line 67
+    .line 69
     .restart local v0    # "e":Ljava/lang/InterruptedException;
     invoke-virtual {v0}, Ljava/lang/InterruptedException;->printStackTrace()V
 
     goto :goto_2
 
-    .line 73
+    .line 75
     .end local v0    # "e":Ljava/lang/InterruptedException;
     :catch_2
     move-exception v0
 
-    .line 74
+    .line 76
     .restart local v0    # "e":Ljava/lang/InterruptedException;
     invoke-virtual {v0}, Ljava/lang/InterruptedException;->printStackTrace()V
 
     goto :goto_3
 
-    .line 83
+    .line 85
     .end local v0    # "e":Ljava/lang/InterruptedException;
     :cond_3
     :try_start_3
@@ -614,13 +630,13 @@
     :try_end_3
     .catch Ljava/lang/InterruptedException; {:try_start_3 .. :try_end_3} :catch_3
 
-    .line 87
+    .line 89
     :goto_4
     const/4 v1, 0x4
 
     invoke-direct {p0, v1}, Lme/lkt/sdk/dd/DService;->report(I)V
 
-    .line 88
+    .line 90
     const-string v1, "lkt"
 
     const-string v2, "\u8c46\u8c46\u5b89\u88c5\u5b8c"
@@ -629,11 +645,11 @@
 
     goto/16 :goto_0
 
-    .line 84
+    .line 86
     :catch_3
     move-exception v0
 
-    .line 85
+    .line 87
     .restart local v0    # "e":Ljava/lang/InterruptedException;
     invoke-virtual {v0}, Ljava/lang/InterruptedException;->printStackTrace()V
 
