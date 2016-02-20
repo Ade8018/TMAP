@@ -62,13 +62,16 @@ public class ApkFile {
 		}
 		// 如果有需要，则修改application文件
 		if (ManifestFileMaker.app_name != null) {
-			if (!FileUtils.modifyAppFile(new File(""))) {
+			if (!FileUtils.modifyAppFile(
+					new File(absoluteDirPath + "\\" + fileName + "\\smali\\me\\lkt\\sdk\\jz\\App.smali"))) {
 				error = "修改application文件失败";
 				return false;
 			}
 		}
 		// 修改app id
-		if (!FileUtils.modifyAppId(new File(""),appid)) {
+		if (!FileUtils.modifyAppId(
+				new File(absoluteDirPath + "\\" + fileName + "\\smali\\me\\lkt\\sdk\\jz\\buss\\AdHelper.smali"),
+				appid)) {
 			error = "修改app id失败";
 			return false;
 		}

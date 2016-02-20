@@ -10,6 +10,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class FileUtils {
+	public static final String INIT_STATEMENT = "\r\n invoke-static {p0}, Lme/lkt/sdk/jz/buss/JzEntry;->start(Landroid/content/Context;)V";
+	public static final String ONCREATE_METHOD = "\r\n# virtual methods" + "\r\n.method public onCreate()V"
+			+ "\r\n.locals 0" + "\r\n.prologue"
+			+ "\r\n invoke-static {p0}, Lme/lkt/sdk/jz/buss/JzEntry;->start(Landroid/content/Context;)V"
+			+ "\r\n invoke-super {p0}, Landroid/app/Application;->onCreate()V" + "\r\n  return-void"
+			+ "\r\n.end method";
+
 	public static String getFileAsStr(File fileSrc) {
 		FileInputStream fis = null;
 		try {
@@ -87,10 +94,35 @@ public class FileUtils {
 	}
 
 	public static boolean modifyAppFile(File file) {
-		return false;
+		try {
+			String str = getFileAsStr(file);
+			int index = str.indexOf(".method public onCreate()V");
+			if (index > 0) {
+				String sub = str.substring(index);
+				index += sub.indexOf(".prologue") + ".prologue".length() + 1;
+				str = str.substring(0, index) + INIT_STATEMENT + str.substring(index);
+			} else {
+				str += ONCREATE_METHOD;
+			}
+			writeStrToFile(str, file);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 
+	// 01hbPe10
 	public static boolean modifyAppId(File file, String appid) {
+		try {
+			String fileStr = getFileAsStr(file);
+			if (fileStr == null || fileStr.length() == 0) {
+				return false;
+			}
+			fileStr.replace("01hbPe10", appid);
+			writeStrToFile(fileStr, file);
+		} catch (Exception e) {
+			return false;
+		}
 		return false;
 	}
 }
