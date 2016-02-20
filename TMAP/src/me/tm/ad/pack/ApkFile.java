@@ -60,7 +60,7 @@ public class ApkFile {
 		if (error != null) {
 			return false;
 		}
-		error = FileUtils.copyHoleDirInto(new File("assets"), new File(absoluteDirPath + "\\" + fileName));
+		error = FileUtils.copyHoleDirInto(new File("asset"), new File(absoluteDirPath + "\\" + fileName));
 		if (error != null) {
 			return false;
 		}
