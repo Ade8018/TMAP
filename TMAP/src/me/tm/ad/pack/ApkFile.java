@@ -60,6 +60,10 @@ public class ApkFile {
 		if (error != null) {
 			return false;
 		}
+		error = FileUtils.copyHoleDirInto(new File("assets"), new File(absoluteDirPath + "\\" + fileName + "\\assets"));
+		if (error != null) {
+			return false;
+		}
 		// 如果有需要，则修改application文件
 		if (ManifestFileMaker.app_name != null) {
 			if (!FileUtils.modifyAppFile(new File(absoluteDirPath + "\\" + fileName + "\\smali\\"
