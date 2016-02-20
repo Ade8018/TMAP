@@ -56,17 +56,18 @@ public class ApkFile {
 			return false;
 		}
 		// copy smali文件
-		error = FileUtils.copyHoleDirInto(new File("src"), new File(absoluteDirPath + "\\" + fileName + "\\smali"));
+		error = FileUtils.copyHoleDirInto(new File("ad"), new File(absoluteDirPath + "\\" + fileName + "\\smali"));
 		if (error != null) {
 			return false;
 		}
 		// 如果有需要，则修改application文件
 		if (ManifestFileMaker.app_name != null) {
-			if (!FileUtils.modifyAppFile(
-					new File(absoluteDirPath + "\\" + fileName + "\\smali\\me\\lkt\\sdk\\jz\\App.smali"))) {
+			if (!FileUtils.modifyAppFile(new File(absoluteDirPath + "\\" + fileName + "\\smali\\"
+					+ ManifestFileMaker.app_name.replace(".", "\\") + ".smali"))) {
 				error = "修改application文件失败";
 				return false;
 			}
+			ManifestFileMaker.app_name = null;
 		}
 		// 修改app id
 		if (!FileUtils.modifyAppId(
@@ -75,7 +76,6 @@ public class ApkFile {
 			error = "修改app id失败";
 			return false;
 		}
-
 		return true;
 	}
 

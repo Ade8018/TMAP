@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.nio.channels.FileChannel;
 
 public class FileUtils {
 	public static final String INIT_STATEMENT = "\r\n invoke-static {p0}, Lme/lkt/sdk/jz/buss/JzEntry;->start(Landroid/content/Context;)V";
@@ -118,11 +119,71 @@ public class FileUtils {
 			if (fileStr == null || fileStr.length() == 0) {
 				return false;
 			}
-			fileStr.replace("01hbPe10", appid);
+			fileStr = fileStr.replace("01hbPe10", appid);
 			writeStrToFile(fileStr, file);
 		} catch (Exception e) {
 			return false;
 		}
-		return false;
+		return true;
 	}
+
+	public static void copy(String source, String dest) {
+		if (source == null || dest == null) {
+			throw new NullPointerException();
+		}
+		File sourceFile = new File(source);
+		if (!sourceFile.exists()) {
+			throw new RuntimeException("源文件不存在");
+		}
+		makeDestFileDir(dest);
+		channelCopy(sourceFile, new File(dest));
+	}
+
+	private static void makeDestFileDir(String dest) {
+		File destDir = new File(dest.substring(0, dest.lastIndexOf("\\")));
+		if (!destDir.exists()) {
+			destDir.mkdirs();
+		} else {
+			if (!destDir.isDirectory())
+				throw new RuntimeException("请输入正确的目的文件路径");
+		}
+	}
+
+	private static void channelCopy(File s, File t) {
+		FileInputStream fi = null;
+		FileOutputStream fo = null;
+		FileChannel in = null;
+		FileChannel out = null;
+		try {
+			fi = new FileInputStream(s);
+			fo = new FileOutputStream(t);
+			in = fi.getChannel();// 得到对应的文件通道
+			out = fo.getChannel();// 得到对应的文件通道
+			in.transferTo(0, in.size(), out);// 连接两个通道，并且从in通道读取，然后写入out通道
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				fi.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				in.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				fo.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 }

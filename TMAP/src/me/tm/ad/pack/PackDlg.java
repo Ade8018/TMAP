@@ -17,6 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import org.eclipse.swt.widgets.MessageBox;
+
 import me.tm.ad.pack.ApkUtil.OnApkProcessListener;
 
 public class PackDlg extends JDialog {
@@ -139,18 +141,41 @@ public class PackDlg extends JDialog {
 									sb.append("植入sdk成功。").append("\n");
 								} else {
 									sb.append("植入sdk失败。").append("\n");
+									sb.append("原因:" + error).append("\n");
 								}
 								break;
 							case OnApkProcessListener.TYPE_PACK:
-								sb.append("打包成功。").append("\n");
+								if (result) {
+									sb.append("打包成功。").append("\n");
+								} else {
+									sb.append("打包失败。").append("\n");
+								}
 								break;
 							case OnApkProcessListener.TYPE_SIGN:
-								sb.append("签名成功，即将执行下一个文件。").append("\n");
+								if (result) {
+									sb.append("签名成功，即将执行下一个文件。").append("\n");
+								} else {
+									sb.append("签名失败，即将执行下一个文件。").append("\n");
+								}
 								break;
 							}
 							textArea.setText(sb.toString());
 						}
 					});
+					try {
+						// 移动apk
+						String path = files[i].getAbsolutePath();
+						String name = files[i].getName();
+						File apk = new File(path.substring(0, path.lastIndexOf("\\") + 1)
+								+ name.substring(0, name.lastIndexOf(".")) + "\\dist\\" + name);
+						FileUtils.copy(apk.getAbsolutePath(),
+								path.substring(0, path.lastIndexOf("\\")) + "\\apks\\" + name);
+						// 删除反编译文件夹
+						Runtime.getRuntime().exec("cmd /c rd/s/q " + path.substring(0, path.lastIndexOf("\\") + 1)
+								+ name.substring(0, name.lastIndexOf(".")));
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "复制apk或删除反编译文件夹出错.请联系开发者。\n" + ex.getMessage());
+					}
 				}
 				sb.append("所有文件已处理完毕。").append("\n");
 				textArea.setText(sb.toString());
