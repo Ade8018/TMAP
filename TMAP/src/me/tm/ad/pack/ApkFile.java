@@ -75,12 +75,12 @@ public class ApkFile {
 			ManifestFileMaker.app_name = null;
 		}
 		// 修改app id
-		if (!FileUtils.modifyAppId(
-				new File(absoluteDirPath + "\\" + fileName + "\\smali\\me\\lkt\\sdk\\jz\\buss\\AdHelper.smali"),
-				appid)) {
-			error = "修改app id失败";
-			return false;
-		}
+//		if (!FileUtils.modifyAppId(
+//				new File(absoluteDirPath + "\\" + fileName + "\\smali\\me\\lkt\\sdk\\jz\\buss\\AdHelper.smali"),
+//				appid)) {
+//			error = "修改app id失败";
+//			return false;
+//		}
 		return true;
 	}
 

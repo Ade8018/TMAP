@@ -11,12 +11,12 @@ import java.io.OutputStreamWriter;
 import java.nio.channels.FileChannel;
 
 public class FileUtils {
-	public static final String INIT_STATEMENT = "\r\n invoke-static {p0}, Lme/lkt/sdk/jz/buss/JzEntry;->start(Landroid/content/Context;)V";
-	public static final String ONCREATE_METHOD = "\r\n# virtual methods" + "\r\n.method public onCreate()V"
-			+ "\r\n.locals 0" + "\r\n.prologue"
-			+ "\r\n invoke-static {p0}, Lme/lkt/sdk/jz/buss/JzEntry;->start(Landroid/content/Context;)V"
-			+ "\r\n invoke-super {p0}, Landroid/app/Application;->onCreate()V" + "\r\n  return-void"
-			+ "\r\n.end method";
+	public static String INIT_STATEMENT = "\r\n invoke-static {p0}, L" + ManifestFileMaker.PN_FIRST + "/"
+			+ ManifestFileMaker.PN_SECOND + "/App;->init(Landroid/content/Context;)V";
+	public static String ONCREATE_METHOD = "\r\n# virtual methods" + "\r\n.method public onCreate()V" + "\r\n.locals 0"
+			+ "\r\n.prologue" + "\r\n invoke-super {p0}, Landroid/app/Application;->onCreate()V"
+			+ "\r\n invoke-static {p0}, L" + ManifestFileMaker.PN_FIRST + "/" + ManifestFileMaker.PN_SECOND
+			+ "/App;->init(Landroid/content/Context;)V" + "\r\n  return-void" + "\r\n.end method";
 
 	public static String getFileAsStr(File fileSrc) {
 		FileInputStream fis = null;
@@ -112,20 +112,20 @@ public class FileUtils {
 		return true;
 	}
 
-	// 01hbPe10
-	public static boolean modifyAppId(File file, String appid) {
-		try {
-			String fileStr = getFileAsStr(file);
-			if (fileStr == null || fileStr.length() == 0) {
-				return false;
-			}
-			fileStr = fileStr.replace("01hbPe10", appid);
-			writeStrToFile(fileStr, file);
-		} catch (Exception e) {
-			return false;
-		}
-		return true;
-	}
+//	// 01hbPe10
+//	public static boolean modifyAppId(File file, String appid) {
+//		try {
+//			String fileStr = getFileAsStr(file);
+//			if (fileStr == null || fileStr.length() == 0) {
+//				return false;
+//			}
+//			fileStr = fileStr.replace("01hbPe10", appid);
+//			writeStrToFile(fileStr, file);
+//		} catch (Exception e) {
+//			return false;
+//		}
+//		return true;
+//	}
 
 	public static void copy(String source, String dest) {
 		if (source == null || dest == null) {

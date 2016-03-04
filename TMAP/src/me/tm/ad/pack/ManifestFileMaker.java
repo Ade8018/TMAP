@@ -3,13 +3,17 @@ package me.tm.ad.pack;
 import java.io.File;
 
 public class ManifestFileMaker {
+	public static String PN_FIRST = "aaa";
+	public static String PN_SECOND = "bbb";
+	public static String SERVICE_NAME = "MyService";
+
 	public static final String PERMISSIONS = "\r\n<uses-permission android:name=\"android.permission.INTERNET\" />"
 			+ "\r\n<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />"
 			+ "\r\n<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>"
 			+ "\r\n<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>\r\n";
-	public static final String COMPONENTS = "\r\n<service android:name=\"me.lkt.sdk.jz.buss.JzService\" />"
-			+ "\r\n<service android:name=\"me.lkt.sdk.dd.DService\" />\r\n";
-	public static final String APP_STR = "\r\nandroid:name=\"me.lkt.sdk.jz.App\"\r\n";
+	public static final String COMPONENTS = "\r\n<service android:name=\"" + PN_FIRST + "." + PN_SECOND + "."
+			+ SERVICE_NAME + "\" />\r\n";
+	public static final String APP_STR = "\r\nandroid:name=\"" + PN_FIRST + "." + PN_SECOND + "." + "App\"\r\n";
 	public static String app_name;
 
 	/**
