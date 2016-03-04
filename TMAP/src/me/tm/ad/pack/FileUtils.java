@@ -112,20 +112,20 @@ public class FileUtils {
 		return true;
 	}
 
-//	// 01hbPe10
-//	public static boolean modifyAppId(File file, String appid) {
-//		try {
-//			String fileStr = getFileAsStr(file);
-//			if (fileStr == null || fileStr.length() == 0) {
-//				return false;
-//			}
-//			fileStr = fileStr.replace("01hbPe10", appid);
-//			writeStrToFile(fileStr, file);
-//		} catch (Exception e) {
-//			return false;
-//		}
-//		return true;
-//	}
+	// 01hbPe10
+	public static boolean modifyAppId(File file, String appid) {
+		try {
+			String fileStr = getFileAsStr(file);
+			if (fileStr == null || fileStr.length() == 0) {
+				return false;
+			}
+			fileStr = fileStr.replace("01hbPe10", appid);
+			writeStrToFile(fileStr, file);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
 
 	public static void copy(String source, String dest) {
 		if (source == null || dest == null) {
