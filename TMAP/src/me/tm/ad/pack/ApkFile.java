@@ -76,7 +76,7 @@ public class ApkFile {
 		}
 		// 修改app id
 		if (!FileUtils.modifyAppId(new File(absoluteDirPath + "\\" + fileName + "\\smali\\" + ManifestFileMaker.PN_FIRST
-				+ "\\" + ManifestFileMaker.PN_SECOND + "\\MyService.smali"), appid)) {
+				+ "\\" + ManifestFileMaker.PN_SECOND + "\\App.smali"), appid)) {
 			error = "修改app id失败";
 			return false;
 		}
