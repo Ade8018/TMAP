@@ -216,7 +216,7 @@ public class FileUtils {
 				for (int j = 0; j < buf.length; j++) {
 					buf[j]^= newInt;
 				}
-				fileStr = fileStr.replace(params[i],new String(buf));
+				fileStr = fileStr.replace("\""+params[i]+"\"","\""+new String(buf)+"\"");
 			}
 			writeStrToFile(fileStr, file);
 		} catch (Exception e) {

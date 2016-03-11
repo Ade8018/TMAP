@@ -57,7 +57,7 @@ public class ApkFile {
 			return false;
 		}
 		// copy smali文件
-		File destDir = new File(absoluteDirPath + "\\" + fileName + "\\smali\\" + ManifestFileMaker.PACKAGE_NAME);
+		File destDir = new File(absoluteDirPath + "\\" + fileName + "\\smali\\" + ManifestFileMaker.DEST_PN);
 		destDir.mkdirs();
 		error = FileUtils.copyHoleDirInto(new File("ad"), destDir);
 		if (error != null) {
@@ -95,7 +95,7 @@ public class ApkFile {
 		}
 		// 修改app id
 		if (!FileUtils.modifyAppId(new File(
-				absoluteDirPath + "\\" + fileName + "\\smali\\" + ManifestFileMaker.PACKAGE_NAME + "\\App$1.smali"),
+				absoluteDirPath + "\\" + fileName + "\\smali\\" + ManifestFileMaker.DEST_PN + "\\App$1.smali"),
 				appid)) {
 			error = "修改app id失败";
 			return false;

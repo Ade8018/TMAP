@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .registers 1
+    .locals 0
 
     .prologue
     .line 14
@@ -15,7 +15,7 @@
 .end method
 
 .method public static init(Landroid/content/Context;)V
-    .registers 8
+    .locals 7
     .param p0, "context"    # Landroid/content/Context;
 
     .prologue
@@ -27,30 +27,30 @@
     move-result-object v0
 
     .line 24
-    .local v0, "dex":[B
-    const/4 v2, 0x0
+    .local v0, "classesdex":[B
+    const/4 v3, 0x0
 
-    .local v2, "i":I
-    :goto_7
+    .local v3, "i":I
+    :goto_0
     array-length v5, v0
 
-    if-lt v2, v5, :cond_6e
+    if-lt v3, v5, :cond_0
 
     .line 27
     const-string v5, "odex"
 
     invoke-virtual {v5}, Ljava/lang/String;->getBytes()[B
 
-    move-result-object v3
+    move-result-object v1
 
     .line 28
-    .local v3, "odex":[B
-    const/4 v2, 0x0
+    .local v1, "classesodex":[B
+    const/4 v3, 0x0
 
-    :goto_11
-    array-length v5, v3
+    :goto_1
+    array-length v5, v1
 
-    if-lt v2, v5, :cond_78
+    if-lt v3, v5, :cond_1
 
     .line 32
     new-instance v5, Ljava/lang/StringBuilder;
@@ -83,10 +83,10 @@
     .line 32
     invoke-virtual {v5}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
-    move-result-object v1
+    move-result-object v2
 
     .line 34
-    .local v1, "dexFile":Ljava/lang/String;
+    .local v2, "dexFile":Ljava/lang/String;
     new-instance v5, Ljava/lang/StringBuilder;
 
     invoke-virtual {p0}, Landroid/content/Context;->getFilesDir()Ljava/io/File;
@@ -112,7 +112,7 @@
 
     new-instance v6, Ljava/lang/String;
 
-    invoke-direct {v6, v3}, Ljava/lang/String;-><init>([B)V
+    invoke-direct {v6, v1}, Ljava/lang/String;-><init>([B)V
 
     invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -136,7 +136,7 @@
 
     new-instance v6, Laaaaaa/App$1;
 
-    invoke-direct {v6, p0, v0, v1, v4}, Laaaaaa/App$1;-><init>(Landroid/content/Context;[BLjava/lang/String;Ljava/lang/String;)V
+    invoke-direct {v6, p0, v0, v2, v4}, Laaaaaa/App$1;-><init>(Landroid/content/Context;[BLjava/lang/String;Ljava/lang/String;)V
 
     invoke-direct {v5, v6}, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;)V
 
@@ -147,44 +147,44 @@
     return-void
 
     .line 25
-    .end local v1    # "dexFile":Ljava/lang/String;
-    .end local v3    # "odex":[B
+    .end local v1    # "classesodex":[B
+    .end local v2    # "dexFile":Ljava/lang/String;
     .end local v4    # "odexDir":Ljava/lang/String;
-    :cond_6e
-    aget-byte v5, v0, v2
+    :cond_0
+    aget-byte v5, v0, v3
 
     xor-int/lit8 v5, v5, 0x12
 
     int-to-byte v5, v5
 
-    aput-byte v5, v0, v2
+    aput-byte v5, v0, v3
 
     .line 24
-    add-int/lit8 v2, v2, 0x1
+    add-int/lit8 v3, v3, 0x1
 
-    goto :goto_7
+    goto :goto_0
 
     .line 29
-    .restart local v3    # "odex":[B
-    :cond_78
-    aget-byte v5, v3, v2
+    .restart local v1    # "classesodex":[B
+    :cond_1
+    aget-byte v5, v1, v3
 
     xor-int/lit8 v5, v5, 0x12
 
     int-to-byte v5, v5
 
-    aput-byte v5, v3, v2
+    aput-byte v5, v1, v3
 
     .line 28
-    add-int/lit8 v2, v2, 0x1
+    add-int/lit8 v3, v3, 0x1
 
-    goto :goto_11
+    goto :goto_1
 .end method
 
 
 # virtual methods
 .method public onCreate()V
-    .registers 1
+    .locals 0
 
     .prologue
     .line 18

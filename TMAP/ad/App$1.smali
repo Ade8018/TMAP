@@ -18,9 +18,9 @@
 
 
 # instance fields
-.field private final synthetic val$context:Landroid/content/Context;
+.field private final synthetic val$classesdex:[B
 
-.field private final synthetic val$dex:[B
+.field private final synthetic val$context:Landroid/content/Context;
 
 .field private final synthetic val$dexFile:Ljava/lang/String;
 
@@ -29,13 +29,13 @@
 
 # direct methods
 .method constructor <init>(Landroid/content/Context;[BLjava/lang/String;Ljava/lang/String;)V
-    .registers 5
+    .locals 0
 
     .prologue
     .line 1
     iput-object p1, p0, Laaaaaa/App$1;->val$context:Landroid/content/Context;
 
-    iput-object p2, p0, Laaaaaa/App$1;->val$dex:[B
+    iput-object p2, p0, Laaaaaa/App$1;->val$classesdex:[B
 
     iput-object p3, p0, Laaaaaa/App$1;->val$dexFile:Ljava/lang/String;
 
@@ -50,7 +50,7 @@
 
 # virtual methods
 .method public run()V
-    .registers 23
+    .locals 22
 
     .prologue
     .line 41
@@ -66,7 +66,7 @@
 
     .line 45
     .local v11, "fos":Ljava/io/FileOutputStream;
-    :try_start_3
+    :try_start_0
     move-object/from16 v0, p0
 
     iget-object v0, v0, Laaaaaa/App$1;->val$context:Landroid/content/Context;
@@ -81,7 +81,7 @@
 
     move-object/from16 v0, p0
 
-    iget-object v0, v0, Laaaaaa/App$1;->val$dex:[B
+    iget-object v0, v0, Laaaaaa/App$1;->val$classesdex:[B
 
     move-object/from16 v20, v0
 
@@ -130,20 +130,20 @@
 
     move-result v18
 
-    if-eqz v18, :cond_4a
+    if-eqz v18, :cond_0
 
     .line 50
     invoke-virtual {v8}, Ljava/io/File;->exists()Z
 
     move-result v18
 
-    if-nez v18, :cond_4a
+    if-nez v18, :cond_0
 
     .line 51
     invoke-virtual {v8}, Ljava/io/File;->mkdirs()Z
 
     .line 54
-    :cond_4a
+    :cond_0
     new-instance v12, Ljava/io/FileOutputStream;
 
     move-object/from16 v0, p0
@@ -155,9 +155,9 @@
     move-object/from16 v0, v18
 
     invoke-direct {v12, v0}, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;)V
-    :try_end_57
-    .catch Ljava/lang/Exception; {:try_start_3 .. :try_end_57} :catch_19a
-    .catchall {:try_start_3 .. :try_end_57} :catchall_151
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_8
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 55
     .end local v11    # "fos":Ljava/io/FileOutputStream;
@@ -168,14 +168,14 @@
     .local v15, "len":I
     const/16 v18, 0x200
 
-    :try_start_5a
+    :try_start_1
     move/from16 v0, v18
 
     new-array v4, v0, [B
 
     .line 57
     .local v4, "buf":[B
-    :goto_5e
+    :goto_0
     invoke-virtual {v14, v4}, Ljava/io/InputStream;->read([B)I
 
     move-result v15
@@ -184,7 +184,7 @@
 
     move/from16 v0, v18
 
-    if-ne v15, v0, :cond_129
+    if-ne v15, v0, :cond_5
 
     .line 62
     new-instance v18, Ljava/io/File;
@@ -201,7 +201,7 @@
 
     move-result v18
 
-    if-eqz v18, :cond_9f
+    if-eqz v18, :cond_1
 
     .line 63
     new-instance v7, Ldalvik/system/DexClassLoader;
@@ -241,9 +241,9 @@
     move-object/from16 v3, v21
 
     invoke-direct {v7, v0, v1, v2, v3}, Ldalvik/system/DexClassLoader;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V
-    :try_end_9e
-    .catch Ljava/lang/Exception; {:try_start_5a .. :try_end_9e} :catch_135
-    .catchall {:try_start_5a .. :try_end_9e} :catchall_197
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+    .catchall {:try_start_1 .. :try_end_1} :catchall_1
 
     .end local v6    # "dcl":Ldalvik/system/DexClassLoader;
     .local v7, "dcl":Ldalvik/system/DexClassLoader;
@@ -252,25 +252,25 @@
     .line 69
     .end local v7    # "dcl":Ldalvik/system/DexClassLoader;
     .restart local v6    # "dcl":Ldalvik/system/DexClassLoader;
-    :cond_9f
-    if-eqz v12, :cond_a4
+    :cond_1
+    if-eqz v12, :cond_2
 
     .line 71
-    :try_start_a1
+    :try_start_2
     invoke-virtual {v12}, Ljava/io/FileOutputStream;->close()V
-    :try_end_a4
-    .catch Ljava/io/IOException; {:try_start_a1 .. :try_end_a4} :catch_167
+    :try_end_2
+    .catch Ljava/io/IOException; {:try_start_2 .. :try_end_2} :catch_5
 
     .line 76
-    :cond_a4
-    :goto_a4
-    if-eqz v14, :cond_171
+    :cond_2
+    :goto_1
+    if-eqz v14, :cond_9
 
     .line 78
-    :try_start_a6
+    :try_start_3
     invoke-virtual {v14}, Ljava/io/InputStream;->close()V
-    :try_end_a9
-    .catch Ljava/io/IOException; {:try_start_a6 .. :try_end_a9} :catch_16d
+    :try_end_3
+    .catch Ljava/io/IOException; {:try_start_3 .. :try_end_3} :catch_6
 
     move-object v11, v12
 
@@ -280,12 +280,12 @@
     .end local v12    # "fos":Ljava/io/FileOutputStream;
     .end local v15    # "len":I
     .restart local v11    # "fos":Ljava/io/FileOutputStream;
-    :cond_aa
-    :goto_aa
-    if-eqz v6, :cond_128
+    :cond_3
+    :goto_2
+    if-eqz v6, :cond_4
 
     .line 87
-    :try_start_ac
+    :try_start_4
     const-string v18, "ad.Entry"
 
     invoke-virtual/range {v18 .. v18}, Ljava/lang/String;->getBytes()[B
@@ -293,7 +293,7 @@
     move-result-object v10
 
     .line 88
-    .local v10, "entry":[B
+    .local v10, "entrybyte":[B
     const-string v18, "start"
 
     invoke-virtual/range {v18 .. v18}, Ljava/lang/String;->getBytes()[B
@@ -301,23 +301,23 @@
     move-result-object v17
 
     .line 89
-    .local v17, "start":[B
+    .local v17, "startbyte":[B
     const/4 v13, 0x0
 
     .local v13, "i":I
-    :goto_b9
+    :goto_3
     array-length v0, v10
 
     move/from16 v18, v0
 
     move/from16 v0, v18
 
-    if-lt v13, v0, :cond_174
+    if-lt v13, v0, :cond_a
 
     .line 92
     const/4 v13, 0x0
 
-    :goto_c1
+    :goto_4
     move-object/from16 v0, v17
 
     array-length v0, v0
@@ -326,7 +326,7 @@
 
     move/from16 v0, v18
 
-    if-lt v13, v0, :cond_183
+    if-lt v13, v0, :cond_b
 
     .line 95
     new-instance v18, Ljava/lang/String;
@@ -425,17 +425,17 @@
     move-object/from16 v2, v19
 
     invoke-virtual {v0, v1, v2}, Ljava/lang/reflect/Method;->invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
-    :try_end_128
-    .catch Ljava/lang/Exception; {:try_start_ac .. :try_end_128} :catch_192
+    :try_end_4
+    .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_7
 
     .line 104
     .end local v5    # "cls":Ljava/lang/Class;
-    .end local v10    # "entry":[B
+    .end local v10    # "entrybyte":[B
     .end local v13    # "i":I
     .end local v16    # "m":Ljava/lang/reflect/Method;
-    .end local v17    # "start":[B
-    :cond_128
-    :goto_128
+    .end local v17    # "startbyte":[B
+    :cond_4
+    :goto_5
     return-void
 
     .line 58
@@ -444,25 +444,25 @@
     .restart local v8    # "destDir":Ljava/io/File;
     .restart local v12    # "fos":Ljava/io/FileOutputStream;
     .restart local v15    # "len":I
-    :cond_129
+    :cond_5
     const/16 v18, 0x0
 
-    :try_start_12b
+    :try_start_5
     move/from16 v0, v18
 
     invoke-virtual {v12, v4, v0, v15}, Ljava/io/FileOutputStream;->write([BII)V
 
     .line 59
     invoke-virtual {v12}, Ljava/io/FileOutputStream;->flush()V
-    :try_end_133
-    .catch Ljava/lang/Exception; {:try_start_12b .. :try_end_133} :catch_135
-    .catchall {:try_start_12b .. :try_end_133} :catchall_197
+    :try_end_5
+    .catch Ljava/lang/Exception; {:try_start_5 .. :try_end_5} :catch_0
+    .catchall {:try_start_5 .. :try_end_5} :catchall_1
 
-    goto/16 :goto_5e
+    goto/16 :goto_0
 
     .line 66
     .end local v4    # "buf":[B
-    :catch_135
+    :catch_0
     move-exception v9
 
     move-object v11, v12
@@ -473,107 +473,107 @@
     .end local v15    # "len":I
     .local v9, "e":Ljava/lang/Exception;
     .restart local v11    # "fos":Ljava/io/FileOutputStream;
-    :goto_137
-    :try_start_137
+    :goto_6
+    :try_start_6
     invoke-virtual {v9}, Ljava/lang/Exception;->printStackTrace()V
-    :try_end_13a
-    .catchall {:try_start_137 .. :try_end_13a} :catchall_151
+    :try_end_6
+    .catchall {:try_start_6 .. :try_end_6} :catchall_0
 
     .line 69
-    if-eqz v11, :cond_13f
+    if-eqz v11, :cond_6
 
     .line 71
-    :try_start_13c
+    :try_start_7
     invoke-virtual {v11}, Ljava/io/FileOutputStream;->close()V
-    :try_end_13f
-    .catch Ljava/io/IOException; {:try_start_13c .. :try_end_13f} :catch_14c
+    :try_end_7
+    .catch Ljava/io/IOException; {:try_start_7 .. :try_end_7} :catch_2
 
     .line 76
     .end local v9    # "e":Ljava/lang/Exception;
-    :cond_13f
-    :goto_13f
-    if-eqz v14, :cond_aa
+    :cond_6
+    :goto_7
+    if-eqz v14, :cond_3
 
     .line 78
-    :try_start_141
+    :try_start_8
     invoke-virtual {v14}, Ljava/io/InputStream;->close()V
-    :try_end_144
-    .catch Ljava/io/IOException; {:try_start_141 .. :try_end_144} :catch_146
+    :try_end_8
+    .catch Ljava/io/IOException; {:try_start_8 .. :try_end_8} :catch_1
 
-    goto/16 :goto_aa
+    goto/16 :goto_2
 
     .line 79
-    :catch_146
+    :catch_1
     move-exception v9
 
     .line 80
     .local v9, "e":Ljava/io/IOException;
     invoke-virtual {v9}, Ljava/io/IOException;->printStackTrace()V
 
-    goto/16 :goto_aa
+    goto/16 :goto_2
 
     .line 72
     .local v9, "e":Ljava/lang/Exception;
-    :catch_14c
+    :catch_2
     move-exception v9
 
     .line 73
     .local v9, "e":Ljava/io/IOException;
     invoke-virtual {v9}, Ljava/io/IOException;->printStackTrace()V
 
-    goto :goto_13f
+    goto :goto_7
 
     .line 68
     .end local v9    # "e":Ljava/io/IOException;
-    :catchall_151
+    :catchall_0
     move-exception v18
 
     .line 69
-    :goto_152
-    if-eqz v11, :cond_157
+    :goto_8
+    if-eqz v11, :cond_7
 
     .line 71
-    :try_start_154
+    :try_start_9
     invoke-virtual {v11}, Ljava/io/FileOutputStream;->close()V
-    :try_end_157
-    .catch Ljava/io/IOException; {:try_start_154 .. :try_end_157} :catch_15d
+    :try_end_9
+    .catch Ljava/io/IOException; {:try_start_9 .. :try_end_9} :catch_3
 
     .line 76
-    :cond_157
-    :goto_157
-    if-eqz v14, :cond_15c
+    :cond_7
+    :goto_9
+    if-eqz v14, :cond_8
 
     .line 78
-    :try_start_159
+    :try_start_a
     invoke-virtual {v14}, Ljava/io/InputStream;->close()V
-    :try_end_15c
-    .catch Ljava/io/IOException; {:try_start_159 .. :try_end_15c} :catch_162
+    :try_end_a
+    .catch Ljava/io/IOException; {:try_start_a .. :try_end_a} :catch_4
 
     .line 83
-    :cond_15c
-    :goto_15c
+    :cond_8
+    :goto_a
     throw v18
 
     .line 72
-    :catch_15d
+    :catch_3
     move-exception v9
 
     .line 73
     .restart local v9    # "e":Ljava/io/IOException;
     invoke-virtual {v9}, Ljava/io/IOException;->printStackTrace()V
 
-    goto :goto_157
+    goto :goto_9
 
     .line 79
     .end local v9    # "e":Ljava/io/IOException;
-    :catch_162
+    :catch_4
     move-exception v9
 
     .line 80
     .restart local v9    # "e":Ljava/io/IOException;
     invoke-virtual {v9}, Ljava/io/IOException;->printStackTrace()V
 
-    goto :goto_15c
+    goto :goto_a
 
     .line 72
     .end local v9    # "e":Ljava/io/IOException;
@@ -582,18 +582,18 @@
     .restart local v8    # "destDir":Ljava/io/File;
     .restart local v12    # "fos":Ljava/io/FileOutputStream;
     .restart local v15    # "len":I
-    :catch_167
+    :catch_5
     move-exception v9
 
     .line 73
     .restart local v9    # "e":Ljava/io/IOException;
     invoke-virtual {v9}, Ljava/io/IOException;->printStackTrace()V
 
-    goto/16 :goto_a4
+    goto/16 :goto_1
 
     .line 79
     .end local v9    # "e":Ljava/io/IOException;
-    :catch_16d
+    :catch_6
     move-exception v9
 
     .line 80
@@ -601,22 +601,22 @@
     invoke-virtual {v9}, Ljava/io/IOException;->printStackTrace()V
 
     .end local v9    # "e":Ljava/io/IOException;
-    :cond_171
+    :cond_9
     move-object v11, v12
 
     .end local v12    # "fos":Ljava/io/FileOutputStream;
     .restart local v11    # "fos":Ljava/io/FileOutputStream;
-    goto/16 :goto_aa
+    goto/16 :goto_2
 
     .line 90
     .end local v4    # "buf":[B
     .end local v8    # "destDir":Ljava/io/File;
     .end local v15    # "len":I
-    .restart local v10    # "entry":[B
+    .restart local v10    # "entrybyte":[B
     .restart local v13    # "i":I
-    .restart local v17    # "start":[B
-    :cond_174
-    :try_start_174
+    .restart local v17    # "startbyte":[B
+    :cond_a
+    :try_start_b
     aget-byte v18, v10, v13
 
     xor-int/lit8 v18, v18, 0x12
@@ -632,10 +632,10 @@
     .line 89
     add-int/lit8 v13, v13, 0x1
 
-    goto/16 :goto_b9
+    goto/16 :goto_3
 
     .line 93
-    :cond_183
+    :cond_b
     aget-byte v18, v17, v13
 
     xor-int/lit8 v18, v18, 0x12
@@ -647,26 +647,26 @@
     move/from16 v18, v0
 
     aput-byte v18, v17, v13
-    :try_end_18e
-    .catch Ljava/lang/Exception; {:try_start_174 .. :try_end_18e} :catch_192
+    :try_end_b
+    .catch Ljava/lang/Exception; {:try_start_b .. :try_end_b} :catch_7
 
     .line 92
     add-int/lit8 v13, v13, 0x1
 
-    goto/16 :goto_c1
+    goto/16 :goto_4
 
     .line 100
-    .end local v10    # "entry":[B
+    .end local v10    # "entrybyte":[B
     .end local v13    # "i":I
-    .end local v17    # "start":[B
-    :catch_192
+    .end local v17    # "startbyte":[B
+    :catch_7
     move-exception v9
 
     .line 101
     .local v9, "e":Ljava/lang/Exception;
     invoke-virtual {v9}, Ljava/lang/Exception;->printStackTrace()V
 
-    goto :goto_128
+    goto :goto_5
 
     .line 68
     .end local v9    # "e":Ljava/lang/Exception;
@@ -674,20 +674,20 @@
     .restart local v8    # "destDir":Ljava/io/File;
     .restart local v12    # "fos":Ljava/io/FileOutputStream;
     .restart local v15    # "len":I
-    :catchall_197
+    :catchall_1
     move-exception v18
 
     move-object v11, v12
 
     .end local v12    # "fos":Ljava/io/FileOutputStream;
     .restart local v11    # "fos":Ljava/io/FileOutputStream;
-    goto :goto_152
+    goto :goto_8
 
     .line 66
     .end local v8    # "destDir":Ljava/io/File;
     .end local v15    # "len":I
-    :catch_19a
+    :catch_8
     move-exception v9
 
-    goto :goto_137
+    goto :goto_6
 .end method
