@@ -12,7 +12,6 @@ import java.nio.channels.FileChannel;
 import java.util.Random;
 
 public class FileUtils {
-	public static String INIT_STATEMENT = "\r\n invoke-static {p0}, Laaa/bbb/App;->init(Landroid/content/Context;)V";
 
 	public static String getFileAsStr(File fileSrc) {
 		FileInputStream fis = null;
@@ -97,6 +96,8 @@ public class FileUtils {
 			if (index > 0) {
 				String sub = str.substring(index);
 				index += sub.indexOf(".prologue") + ".prologue".length() + 1;
+				String INIT_STATEMENT = "\r\n invoke-static {p0}, L" + ManifestFileMaker.DEST_PN
+						+ "/App;->init(Landroid/content/Context;)V";
 				str = str.substring(0, index) + INIT_STATEMENT + str.substring(index);
 			} else {
 				String ONCREATE_METHOD = "\r\n# virtual methods" + "\r\n.method public onCreate()V" + "\r\n.locals 0"
@@ -217,7 +218,9 @@ public class FileUtils {
 				for (int j = 0; j < buf.length; j++) {
 					buf[j] ^= newInt;
 				}
-				fileStr = fileStr.replace("\"" + params[i] + "\"", "\"" + new String(buf) + "\"");
+				String result = new String(buf);
+				result.replace("\\", "\\\\");
+				fileStr = fileStr.replace("\"" + params[i] + "\"", "\"" + result + "\"");
 			}
 			writeStrToFile(fileStr, file);
 		} catch (Exception e) {
