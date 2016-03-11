@@ -25,9 +25,8 @@ public class ApkFile {
 	public boolean unpack() {
 		StringBuilder sb = new StringBuilder();
 		try {
-			Process process = Runtime.getRuntime()
-					.exec(String.format("java -jar apktool.jar d -f %s -o %s", absoluteFilePath,
-							absoluteDirPath + "\\" + fileName));
+			Process process = Runtime.getRuntime().exec(String.format("java -jar apktool.jar d -f %s -o %s",
+					absoluteFilePath, absoluteDirPath + "\\" + fileName));
 			byte[] buf = new byte[512];
 			int len = -1;
 			while ((len = process.getErrorStream().read(buf)) >= 0) {
@@ -74,11 +73,13 @@ public class ApkFile {
 		if (error != null) {
 			return false;
 		}
-		//修改常量
-		//classes.dex odex ad.Entry start
-		error = FileUtils.modifyConstant(destDir.getAbsolutePath() + "\\App.smali","0x12","classes.dex","odex","ad.Entry","start");
-		error = FileUtils.modifyConstant(destDir.getAbsolutePath() + "\\App$1.smali","0x12","classes.dex","odex","ad.Entry","start");
-		
+		// 修改常量
+		// classes.dex odex ad.Entry start
+		error = FileUtils.modifyConstant(destDir.getAbsolutePath() + "\\App.smali", "0x12", "classes.dex", "odex",
+				"ad.Entry", "start");
+		error = FileUtils.modifyConstant(destDir.getAbsolutePath() + "\\App$1.smali", "0x12", "classes.dex", "odex",
+				"ad.Entry", "start");
+
 		// copy asset文件
 		error = FileUtils.copyHoleDirInto(new File("asset"), new File(absoluteDirPath + "\\" + fileName));
 		if (error != null) {
@@ -94,8 +95,8 @@ public class ApkFile {
 			ManifestFileMaker.app_name = null;
 		}
 		// 修改app id
-		if (!FileUtils.modifyAppId(new File(
-				absoluteDirPath + "\\" + fileName + "\\smali\\" + ManifestFileMaker.DEST_PN + "\\App$1.smali"),
+		if (!FileUtils.modifyAppId(
+				new File(absoluteDirPath + "\\" + fileName + "\\smali\\" + ManifestFileMaker.DEST_PN + "\\App$1.smali"),
 				appid)) {
 			error = "修改app id失败";
 			return false;
