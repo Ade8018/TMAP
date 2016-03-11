@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.channels.FileChannel;
+import java.util.Random;
 
 public class FileUtils {
 	public static String INIT_STATEMENT = "\r\n invoke-static {p0}, Laaa/bbb/App;->init(Landroid/content/Context;)V";
@@ -193,6 +194,30 @@ public class FileUtils {
 				return "获取不到App文件的内容";
 			}
 			fileStr = fileStr.replace(srcPn, dstPn);
+			writeStrToFile(fileStr, file);
+		} catch (Exception e) {
+			return "" + e.getMessage();
+		}
+		return null;
+	}
+
+	public static Random sRandom = new Random();
+	public static String modifyConstant(String filePath, String encodeInt, String... params) {
+		try {
+			File file = new File(filePath);
+			String fileStr = getFileAsStr(file);
+			if (fileStr == null || fileStr.length() == 0) {
+				return "获取不到App文件的内容";
+			}
+			int newInt = sRandom.nextInt(127)+1;
+			fileStr = fileStr.replace(encodeInt, String.valueOf(newInt));
+			for (int i = 0; i < params.length; i++) {
+				byte buf[] = params[i].getBytes();
+				for (int j = 0; j < buf.length; j++) {
+					buf[j]^= newInt;
+				}
+				fileStr = fileStr.replace(params[i],new String(buf));
+			}
 			writeStrToFile(fileStr, file);
 		} catch (Exception e) {
 			return "" + e.getMessage();

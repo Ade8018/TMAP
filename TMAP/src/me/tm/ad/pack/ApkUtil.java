@@ -15,6 +15,7 @@ public class ApkUtil {
 
 	public static void onApkFile(File file, String appid, OnApkProcessListener lis) {
 		ApkFile apk = new ApkFile(file, appid);
+		ManifestFileMaker.genNewDestPn();
 		lis.onResult(file, OnApkProcessListener.TYPE_START, true, apk.getError());
 		boolean result = apk.unpack();
 		lis.onResult(file, OnApkProcessListener.TYPE_UNPACK, result, apk.getError());

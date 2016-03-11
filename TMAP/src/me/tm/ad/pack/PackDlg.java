@@ -136,7 +136,6 @@ public class PackDlg extends JDialog {
 								}
 								break;
 							case OnApkProcessListener.TYPE_INSERT:
-								ManifestFileMaker.genNewDestPn();
 								if (result) {
 									sb.append("植入sdk成功。").append("\n");
 								} else {

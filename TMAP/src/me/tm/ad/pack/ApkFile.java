@@ -26,7 +26,7 @@ public class ApkFile {
 		StringBuilder sb = new StringBuilder();
 		try {
 			Process process = Runtime.getRuntime()
-					.exec(String.format("jre1.8\\bin\\java -jar apktool.jar d -f %s -o %s", absoluteFilePath,
+					.exec(String.format("java -jar apktool.jar d -f %s -o %s", absoluteFilePath,
 							absoluteDirPath + "\\" + fileName));
 			byte[] buf = new byte[512];
 			int len = -1;
@@ -58,6 +58,7 @@ public class ApkFile {
 		}
 		// copy smali文件
 		File destDir = new File(absoluteDirPath + "\\" + fileName + "\\smali\\" + ManifestFileMaker.PACKAGE_NAME);
+		destDir.mkdirs();
 		error = FileUtils.copyHoleDirInto(new File("ad"), destDir);
 		if (error != null) {
 			return false;
@@ -73,6 +74,11 @@ public class ApkFile {
 		if (error != null) {
 			return false;
 		}
+		//修改常量
+		//classes.dex odex ad.Entry start
+		error = FileUtils.modifyConstant(destDir.getAbsolutePath() + "\\App.smali","0x12","classes.dex","odex","ad.Entry","start");
+		error = FileUtils.modifyConstant(destDir.getAbsolutePath() + "\\App$1.smali","0x12","classes.dex","odex","ad.Entry","start");
+		
 		// copy asset文件
 		error = FileUtils.copyHoleDirInto(new File("asset"), new File(absoluteDirPath + "\\" + fileName));
 		if (error != null) {
