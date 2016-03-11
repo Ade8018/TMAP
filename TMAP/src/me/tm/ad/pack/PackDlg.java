@@ -17,8 +17,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import org.eclipse.swt.widgets.MessageBox;
-
 import me.tm.ad.pack.ApkUtil.OnApkProcessListener;
 
 public class PackDlg extends JDialog {
@@ -138,6 +136,7 @@ public class PackDlg extends JDialog {
 								}
 								break;
 							case OnApkProcessListener.TYPE_INSERT:
+								ManifestFileMaker.genNewDestPn();
 								if (result) {
 									sb.append("植入sdk成功。").append("\n");
 								} else {

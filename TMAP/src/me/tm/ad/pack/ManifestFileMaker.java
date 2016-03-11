@@ -1,19 +1,21 @@
 package me.tm.ad.pack;
 
 import java.io.File;
+import java.util.Random;
 
 public class ManifestFileMaker {
-	public static String PN_FIRST = "aaa";
-	public static String PN_SECOND = "bbb";
-//	public static String SERVICE_NAME = "MyService";
+	public static String PACKAGE_NAME = "aaaaaa";
+	public static String DEST_PN = "";
+	// public static String SERVICE_NAME = "MyService";
 
 	public static final String PERMISSIONS = "\r\n<uses-permission android:name=\"android.permission.INTERNET\" />"
 			+ "\r\n<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />"
 			+ "\r\n<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>"
 			+ "\r\n<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>\r\n";
-//	public static final String COMPONENTS = "\r\n<service android:name=\"" + PN_FIRST + "." + PN_SECOND + "."
-//			+ SERVICE_NAME + "\" />\r\n";
-	public static final String APP_STR = "\r\nandroid:name=\"" + PN_FIRST + "." + PN_SECOND + "." + "App\"\r\n";
+	// public static final String COMPONENTS = "\r\n<service android:name=\"" +
+	// PN_FIRST + "." + PN_SECOND + "."
+	// + SERVICE_NAME + "\" />\r\n";
+//	public static final String APP_STR = "\r\nandroid:name=\"" + DEST_PN + ".App\"\r\n";
 	public static String app_name;
 
 	/**
@@ -49,15 +51,16 @@ public class ManifestFileMaker {
 		sub = mani.substring(manifestContentIndex + 1);
 		mani = mani.substring(0, manifestContentIndex + 1) + PERMISSIONS + sub;
 
-//		int appContentIndex = mani.indexOf("<application");
-//		sub = mani.substring(appContentIndex);
-//		appContentIndex += sub.indexOf(">");
-//		sub = mani.substring(appContentIndex + 1);
-//		mani = mani.substring(0, appContentIndex + 1) + COMPONENTS + sub;
+		// int appContentIndex = mani.indexOf("<application");
+		// sub = mani.substring(appContentIndex);
+		// appContentIndex += sub.indexOf(">");
+		// sub = mani.substring(appContentIndex + 1);
+		// mani = mani.substring(0, appContentIndex + 1) + COMPONENTS + sub;
 
 		String app = getAppName(mani);
 		if (app == null) {
 			int appindex = mani.indexOf("<application") + "<application".length() + 1;
+			String APP_STR = "\r\nandroid:name=\"" + DEST_PN + ".App\"\r\n";
 			mani = mani.substring(0, appindex) + APP_STR + mani.substring(appindex);
 		}
 		return mani;
@@ -74,5 +77,16 @@ public class ManifestFileMaker {
 		name = name.substring(0, name.indexOf("\""));
 		app_name = name;
 		return name;
+	}
+
+	public static Random sRandom = new Random();
+	public static void genNewDestPn() {//生成随机的新包名
+		char basec = 'a';
+		int pnlen = sRandom.nextInt(4) + 3;// 包名长度3-6
+		String pn = "";
+		for (int i = 0; i < pnlen; i++) {
+			pn+= (char)(basec+sRandom.nextInt(25));
+		}
+		DEST_PN = pn;
 	}
 }

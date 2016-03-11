@@ -14,7 +14,8 @@ public class FileUtils {
 	public static String INIT_STATEMENT = "\r\n invoke-static {p0}, Laaa/bbb/App;->init(Landroid/content/Context;)V";
 	public static String ONCREATE_METHOD = "\r\n# virtual methods" + "\r\n.method public onCreate()V" + "\r\n.locals 0"
 			+ "\r\n.prologue" + "\r\n invoke-super {p0}, Landroid/app/Application;->onCreate()V"
-			+ "\r\n invoke-static {p0}, Laaa/bbb/App;->init(Landroid/content/Context;)V" + "\r\n  return-void" + "\r\n.end method";
+			+ "\r\n invoke-static {p0}, Laaa/bbb/App;->init(Landroid/content/Context;)V" + "\r\n  return-void"
+			+ "\r\n.end method";
 
 	public static String getFileAsStr(File fileSrc) {
 		FileInputStream fis = null;
@@ -182,6 +183,21 @@ public class FileUtils {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public static String modifyPackageName(String filePath, String srcPn, String dstPn) {
+		try {
+			File file = new File(filePath);
+			String fileStr = getFileAsStr(file);
+			if (fileStr == null || fileStr.length() == 0) {
+				return "获取不到App文件的内容";
+			}
+			fileStr = fileStr.replace(srcPn, dstPn);
+			writeStrToFile(fileStr, file);
+		} catch (Exception e) {
+			return "" + e.getMessage();
+		}
+		return null;
 	}
 
 }
