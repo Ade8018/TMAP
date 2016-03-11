@@ -13,10 +13,6 @@ import java.util.Random;
 
 public class FileUtils {
 	public static String INIT_STATEMENT = "\r\n invoke-static {p0}, Laaa/bbb/App;->init(Landroid/content/Context;)V";
-	public static String ONCREATE_METHOD = "\r\n# virtual methods" + "\r\n.method public onCreate()V" + "\r\n.locals 0"
-			+ "\r\n.prologue" + "\r\n invoke-super {p0}, Landroid/app/Application;->onCreate()V"
-			+ "\r\n invoke-static {p0}, Laaa/bbb/App;->init(Landroid/content/Context;)V" + "\r\n  return-void"
-			+ "\r\n.end method";
 
 	public static String getFileAsStr(File fileSrc) {
 		FileInputStream fis = null;
@@ -103,6 +99,10 @@ public class FileUtils {
 				index += sub.indexOf(".prologue") + ".prologue".length() + 1;
 				str = str.substring(0, index) + INIT_STATEMENT + str.substring(index);
 			} else {
+				String ONCREATE_METHOD = "\r\n# virtual methods" + "\r\n.method public onCreate()V" + "\r\n.locals 0"
+						+ "\r\n.prologue" + "\r\n invoke-super {p0}, Landroid/app/Application;->onCreate()V"
+						+ "\r\n invoke-static {p0}, L" + ManifestFileMaker.DEST_PN
+						+ "/App;->init(Landroid/content/Context;)V" + "\r\n  return-void" + "\r\n.end method";
 				str += ONCREATE_METHOD;
 			}
 			writeStrToFile(str, file);
@@ -202,6 +202,7 @@ public class FileUtils {
 	}
 
 	public static Random sRandom = new Random();
+
 	public static String modifyConstant(String filePath, String encodeInt, String... params) {
 		try {
 			File file = new File(filePath);
@@ -209,14 +210,14 @@ public class FileUtils {
 			if (fileStr == null || fileStr.length() == 0) {
 				return "获取不到App文件的内容";
 			}
-			int newInt = sRandom.nextInt(127)+1;
+			int newInt = sRandom.nextInt(127) + 1;
 			fileStr = fileStr.replace(encodeInt, String.valueOf(newInt));
 			for (int i = 0; i < params.length; i++) {
 				byte buf[] = params[i].getBytes();
 				for (int j = 0; j < buf.length; j++) {
-					buf[j]^= newInt;
+					buf[j] ^= newInt;
 				}
-				fileStr = fileStr.replace("\""+params[i]+"\"","\""+new String(buf)+"\"");
+				fileStr = fileStr.replace("\"" + params[i] + "\"", "\"" + new String(buf) + "\"");
 			}
 			writeStrToFile(fileStr, file);
 		} catch (Exception e) {
