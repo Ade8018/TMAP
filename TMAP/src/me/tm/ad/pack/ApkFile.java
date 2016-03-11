@@ -25,7 +25,7 @@ public class ApkFile {
 	public boolean unpack() {
 		StringBuilder sb = new StringBuilder();
 		try {
-			Process process = Runtime.getRuntime().exec(String.format("java -jar apktool.jar d -f %s -o %s",
+			Process process = Runtime.getRuntime().exec(String.format("jre1.8/bin/java -jar apktool.jar d -f %s -o %s",
 					absoluteFilePath, absoluteDirPath + "\\" + fileName));
 			byte[] buf = new byte[512];
 			int len = -1;
@@ -108,7 +108,7 @@ public class ApkFile {
 		StringBuilder sb = new StringBuilder();
 		try {
 			Process process = Runtime.getRuntime()
-					.exec(String.format("java -jar apktool.jar b %s", absoluteDirPath + "\\" + fileName));
+					.exec(String.format("jre1.8/bin/java -jar apktool.jar b %s", absoluteDirPath + "\\" + fileName));
 			byte[] buf = new byte[512];
 			int len = -1;
 			while ((len = process.getErrorStream().read(buf)) >= 0) {
