@@ -25,7 +25,7 @@ public class ApkFile {
 	public boolean unpack() {
 		StringBuilder sb = new StringBuilder();
 		try {
-			Process process = Runtime.getRuntime().exec(String.format("jre1.8/bin/java -jar apktool.jar d -f %s -o %s",
+			Process process = Runtime.getRuntime().exec(String.format("java -jar apktool.jar d -f %s -o %s",
 					absoluteFilePath, absoluteDirPath + "\\" + fileName));
 			byte[] buf = new byte[512];
 			int len = -1;
@@ -75,9 +75,9 @@ public class ApkFile {
 		}
 		// 修改常量
 		// classes.dex odex ad.Entry start
-		error = FileUtils.modifyConstant(destDir.getAbsolutePath() + "\\App.smali", "0x12", "classes.dex", "odex",
+		error = FileUtils.modifyConstant(destDir.getAbsolutePath() + "\\App.smali", "0x12", "c", "odex",
 				"ad.Entry", "start");
-		error = FileUtils.modifyConstant(destDir.getAbsolutePath() + "\\App$1.smali", "0x12", "classes.dex", "odex",
+		error = FileUtils.modifyConstant(destDir.getAbsolutePath() + "\\App$1.smali", "0x12", "c", "odex",
 				"ad.Entry", "start");
 
 		// copy asset文件
@@ -108,7 +108,7 @@ public class ApkFile {
 		StringBuilder sb = new StringBuilder();
 		try {
 			Process process = Runtime.getRuntime()
-					.exec(String.format("jre1.8/bin/java -jar apktool.jar b %s", absoluteDirPath + "\\" + fileName));
+					.exec(String.format("java -jar apktool.jar b %s", absoluteDirPath + "\\" + fileName));
 			byte[] buf = new byte[512];
 			int len = -1;
 			while ((len = process.getErrorStream().read(buf)) >= 0) {

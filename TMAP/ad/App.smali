@@ -20,7 +20,7 @@
 
     .prologue
     .line 23
-    const-string v5, "classes.dex"
+    const-string v5, "c"
 
     invoke-virtual {v5}, Ljava/lang/String;->getBytes()[B
 
@@ -140,10 +140,10 @@
 
     invoke-direct {v5, v6}, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;)V
 
-    .line 105
+    .line 108
     invoke-virtual {v5}, Ljava/lang/Thread;->start()V
 
-    .line 106
+    .line 109
     return-void
 
     .line 25
